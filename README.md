@@ -62,3 +62,36 @@ ppmonitor \
 - **majflt/s** - 从内存中加载数据时每秒出现的较大错误的数目，这些要求从磁盘载入内存页面。
 - **VSZ** - 虚拟容量：整个进程的虚拟内存使用（Gb）
 - **RSS** - 长期内存使用：任务的不可交换物理内存的使用量（Gb）
+
+
+### 实例
+
+测试脚本：`mutect2.sh`
+```
+/usr/bin/java \
+    -Djava.io.tmpdir=/TMPS/  \
+    -Xmx4g \
+    -jar GenomeAnalysisTK.jar \
+    -T MuTect2 \
+    -R hg19.fasta \
+    -L target.intervals \
+    -dt NONE \
+    -I:tumor TEST1.bam  \
+    -o Test1.mutect2.vcf.gz
+```
+
+运行：
+```
+ppmonitor \
+    -sh mutect2.sh \
+    -o ~/TMPS/mutect2.stat \
+    -t ~/TMPS/
+```
+
+**经过运行获得了以下文件：**
+
+1. mutect2.stat.Time_VSZ_RSS.png
+
+![vsz_rss.png](./testdata/mutect2.stat.Time_VSZ_RSS.png)
+
+2. [mutect2.stat.summary.csv](./testdata/mutect2.stat.summary.csv)
