@@ -4,6 +4,28 @@
 
 内存监控
 
+### 依赖的包及软件
+
+python3.5
+```
+cycler (0.10.0)
+matplotlib (2.1.1)
+numpy (1.14.0)
+pandas (0.21.1)
+pip (9.0.1)
+pyparsing (2.2.0)
+python-dateutil (2.6.1)
+pytz (2017.3)
+scipy (1.0.0)
+seaborn (0.8.1)
+setuptools (38.4.0)
+six (1.11.0)
+wheel (0.30.0)
+```
+
+`sysstat 版本 11.2.0 pidstat`
+
+
 ### 使用说明
 
 
