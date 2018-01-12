@@ -14,7 +14,8 @@ from utils import getArgs,pipeline
 
 def main():
     args = getArgs()
-    pipeline(args.shellScript,args.out,args.tmp,args.log)
+    pipeline(os.path.abspath(args.shellScript),os.path.abspath(args.out),
+             os.path.abspath(args.tmp),os.path.abspath(args.log))
 
 
 if __name__ == '__main__':
