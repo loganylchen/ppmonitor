@@ -103,7 +103,7 @@ def getstatCmd(pid):
     :param pid: pid
     :return: cmd
     '''
-    cmd = 'pidstat -urd -h -p {}'.format(pid)
+    cmd = 'pidstat -urd -h -p {} 1 1'.format(pid)
     return cmd
 
 
@@ -116,7 +116,7 @@ def plotResult(file, outdir):
     '''
     data = pd.read_table(file, sep='\s+', skip_blank_lines=True, comment='#')
     data.columns = ['Time', 'UID', 'PID', 'pusr', 'psystem', 'pguest', 'pCPU', 'CPU', 'minflt/s',
-                    'majflt/s', 'VSZ', 'RSS', '%MEM', 'kB_rd/s', 'kB_wr/s', 'kB_ccwr/s', 'iodelay', 'Command']
+                    'majflt/s', 'VSZ', 'RSS', '%MEM', 'kB_rd/s', 'kB_wr/s', 'kB_ccwr/s', 'Command']
     data['Time'] = data['Time'] - min(data['Time'])
     data['VSZ'] = data['VSZ'] / 1000000
     data['RSS'] = data['RSS'] / 1000000
