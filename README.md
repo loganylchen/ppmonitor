@@ -23,7 +23,10 @@ six (1.11.0)
 wheel (0.30.0)
 ```
 
-`sysstat 版本 11.2.0 pidstat`
+
+sysstat套件版本：
+
+`sysstat.x86_64 0:10.1.5-12.el7`
 
 
 ### 使用说明
