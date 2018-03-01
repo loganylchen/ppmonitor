@@ -124,7 +124,7 @@ def plotResult(file, outdir):
     # print(data)
     sns_plot = sns.pairplot(data, x_vars=["RSS", "VSZ"], y_vars=['Time'],
                             hue='Command', size=10)
-    sns_plot.savefig("{}.Time_VSZ_RSS.png".format(outdir), dpi=300)
+    sns_plot.savefig("{}.Time_VSZ_RSS.pdf".format(outdir), dpi=300)
     p = Popen('rm {}'.format(file))
     _, _ = p.communicate()
 
