@@ -160,21 +160,22 @@ def pidstat(fp,pid, cache, tmp='/tmp/'):
     rf, cache = randomFileName(cache)
     # cmd = getstatCmd(pid)
     file = '{}/{}'.format(tmp, rf)
-    with open(file, 'w') as f:
-        pidlist = getpids(pid)
 
-        while (len(pidlist) > 0 and not fp.poll()):
-            for cpid in pidlist:
-                cmd = getstatCmd(cpid)
-                p = Popen(cmd)
-                stdout, _ = p.communicate()
+    pidlist = getpids(pid)
+
+    while (len(pidlist) > 0 and not fp.poll()):
+        for cpid in pidlist:
+            cmd = getstatCmd(cpid)
+            p = Popen(cmd)
+            stdout, _ = p.communicate()
+            with open(file, 'a+') as f:
                 f.write('#stdout:{}'.format(stdout.decode('utf-8')))
 
-            pidlist = getpids(pid)
-            time.sleep(10)  # 统计时间一般10秒一次
-            # p = Popen(cmd)
-            # stdout, stderr = p.communicate()
-            # print('stdout:{}'.format(stdout.decode('utf-8')))
+        pidlist = getpids(pid)
+        time.sleep(10)  # 统计时间一般10秒一次
+        # p = Popen(cmd)
+        # stdout, stderr = p.communicate()
+        # print('stdout:{}'.format(stdout.decode('utf-8')))
     return file
 
 
