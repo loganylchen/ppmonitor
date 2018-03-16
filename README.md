@@ -6,7 +6,7 @@
 
 ### 依赖的包及软件
 
-python3.5
+python3.5以上
 ```
 cycler (0.10.0)
 matplotlib (2.1.1)
@@ -28,17 +28,27 @@ sysstat套件版本：
 
 `sysstat.x86_64 0:10.1.5-12.el7`
 
+
+
 ### 版本更新说明
 
 之前产生了一些问题，就是使用ppmonitor监控某个程序的时候，可能造成程序卡死，而本身程序脚本是没有问题的
 可能是由于subprocess中输入输出导致阻塞（原因暂未查明）。为了尽快解决，将ppmonitor进行修改。
 ppmonitor仅仅作为监控存在，脚本的运行由自己完成。
 
+
+### 安装说明
+
+1. 从[github](https://github.com/ChenYuelong/ppmonitor/releases/tag/v0.0.1_beta)上下载源码
+2. 解压 && `cd in`
+3. 利用`pip3 install -r requirement.txt`安装所依赖的包
+4. 利用`python3 setup.py install`安装该软件
+
 ### 使用说明
 
 
 ```
-usage: ppmonitor [-h] -pid MAINPID -o OUT [-t TMP] [-log LOG]
+usage: ppmonitor.py [-h] -pid MAINPID -o OUT [-t TMP] [-log LOG]
 
 shell脚本监控程序，监控shell脚本中每一行命令所用内存及cpu统计
 
