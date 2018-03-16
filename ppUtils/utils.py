@@ -29,8 +29,10 @@ def getArgs():
     '''
     parser = argparse.ArgumentParser(prog='ppmonitor',
                                      description='shell脚本监控程序，监控shell脚本中每一行命令所用内存及cpu统计')
-    parser.add_argument('-sh', '--shell', dest='shellScript', type=str, required=True, action='store',
-                        help='shell脚本，e.g. test.sh')
+    # parser.add_argument('-sh', '--shell', dest='shellScript', type=str, required=True, action='store',
+    #                     help='shell脚本，e.g. test.sh')
+    parser.add_argument('-pid', '--pid', dest='mainPid', type=str, required=True, action='store',
+                        help='需要监控的进程号，程序会监控该进程号及其子进程')
     parser.add_argument('-o', '--out', dest='out', type=str, required=True, action='store',
                         help='输出目录prefix')
     parser.add_argument('-t', '--tmp', dest='tmp', type=str, action='store',
@@ -130,7 +132,7 @@ def plotResult(file, outdir):
 
 
 
-def pipeline(shs, outdir, tmp, log):
+def pipeline(pid, outdir, tmp, log):
     '''
     流程
     :param shs:脚本
@@ -140,16 +142,16 @@ def pipeline(shs, outdir, tmp, log):
     :return: 无
     '''
     cache = {}
-    cmd = 'sh {}'.format(shs)
-    fp = Popen(cmd)
-    fatherPid = fp.pid
-    file = pidstat(fp,fatherPid, cache, tmp)
+    # cmd = 'sh {}'.format(shs)
+    # fp = Popen(cmd)
+    fatherPid = pid
+    file = pidstat(fatherPid, cache, tmp)
     plotResult(file, outdir)
     # _, _ = fp.communicate()
     print('Finish!!!')
 
 
-def pidstat(fp,pid, cache, tmp='/tmp/'):
+def pidstat(pid, cache, tmp='/tmp/'):
     '''
     pidstat进行进程统计，并将结果输出到tmp目录中
     :param pid: pid
@@ -163,7 +165,7 @@ def pidstat(fp,pid, cache, tmp='/tmp/'):
 
     pidlist = getpids(pid)
 
-    while (len(pidlist) > 0 and not fp.poll()):
+    while (len(pidlist) > 0):
         for cpid in pidlist:
             cmd = getstatCmd(cpid)
             p = Popen(cmd)
