@@ -38,14 +38,14 @@ ppmonitor仅仅作为监控存在，脚本的运行由自己完成。
 
 
 ```
-usage: ppmonitor [-h] -sh SHELLSCRIPT -o OUT [-t TMP] [-log LOG]
+usage: ppmonitor [-h] -pid MAINPID -o OUT [-t TMP] [-log LOG]
 
 shell脚本监控程序，监控shell脚本中每一行命令所用内存及cpu统计
 
 optional arguments:
   -h, --help            show this help message and exit
-  -sh SHELLSCRIPT, --shell SHELLSCRIPT
-                        shell脚本，e.g. test.sh
+  -pid MAINPID, --pid MAINPID
+                        需要监控的进程号，程序会监控该进程号及其子进程
   -o OUT, --out OUT     输出目录prefix
   -t TMP, --tmp TMP     tmp目录，e.g. /tmp/
   -log LOG, --log LOG   log，e.g. test.sh.log
@@ -54,7 +54,7 @@ optional arguments:
 *例如*
 ```
 ppmonitor \
-    -sh ~/PROJECTS/variant_call_somatic_20180104/src/mutect2.sh \
+    -pid 222 \
     -o ~/PROJECTS/variant_call_somatic_20180104/src/mutect2.stat \
     -t ~/TMPS/
 ```

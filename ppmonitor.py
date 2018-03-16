@@ -6,9 +6,8 @@
 # @File    : ppmonitor.py
 # @Software: PyCharm
 
-import os, sys
-import argparse
-from utils import getArgs,pipeline
+import os
+from ppUtils.utils import getArgs,pipeline
 
 
 
